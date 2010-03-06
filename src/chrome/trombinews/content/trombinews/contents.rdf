@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+            xmlns:chrome="http://www.mozilla.org/rdf/chrome#">
+
+  <RDF:Seq about="urn:mozilla:package:root">
+    <RDF:li resource="urn:mozilla:package:trombinews"/>
+  </RDF:Seq>
+
+  <RDF:Seq about="urn:mozilla:overlays">
+    <RDF:li resource="chrome://messenger/content/msgHdrViewOverlay.xul"/>
+   </RDF:Seq>
+   
+  <RDF:Seq about="chrome://messenger/content/msgHdrViewOverlay.xul">
+    <RDF:li>chrome://trombinews/content/trombinews_overlay.xul</RDF:li>
+  </RDF:Seq>
+  
+  <RDF:Description about="urn:mozilla:package:trombinews"
+        chrome:displayName="TrombiNews"
+        chrome:author="Fabien Vinas"
+        chrome:name="TrombiNews"
+	chrome:extension="true"
+	chrome:description="Affiche la photo de l'expéditeur du message (provenant du trombi de Supélec Rezo).">
+  </RDF:Description>  
+
+</RDF:RDF>
+
+

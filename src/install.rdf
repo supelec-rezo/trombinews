@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+	<Description about="urn:mozilla:install-manifest">
+		<em:id>{7EC34D47-B2F3-4A4C-904A-94D0D736E408}</em:id>
+		<em:type>2</em:type>
+		<em:name>Trombinews</em:name>
+		<em:displayname>TrombiNews</em:displayname>
+		<em:version>0.8.1</em:version>
+		<em:description>Affiche la photo de l'expéditeur à côté du message</em:description>
+		<em:creator>Fabien Vinas</em:creator>
+        <em:updateURL>https://trombinews.campus.ecp.fr/update/update.rdf.php</em:updateURL>
+        <em:iconURL>chrome://trombinews/content/trombinews.png</em:iconURL>
+        <em:homepageURL>http://trombinews.campus.ecp.fr/</em:homepageURL>
+        <em:aboutURL>chrome://trombinews/content/apropos.xul</em:aboutURL>
+
+		<em:file>
+			<Description about="urn:mozilla:extension:file:trombinews.jar">
+				<em:package>content/trombinews/</em:package>
+			</Description>
+		</em:file>
+
+		<!-- Thunderbird -->
+		<em:targetApplication>
+			<Description>
+				<em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id>
+				<em:minVersion>1.5+</em:minVersion>
+				<em:maxVersion>3.5+</em:maxVersion>
+			</Description>
+		</em:targetApplication>
+
+	</Description>
+</RDF>

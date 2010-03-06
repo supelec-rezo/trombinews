@@ -1,0 +1,3 @@
+content trombinews jar:chrome/trombinews.jar!/content/trombinews/
+
+overlay chrome://messenger/content/msgHdrViewOverlay.xul chrome://trombinews/content/trombinews_overlay.xul

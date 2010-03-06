@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+ 
+  <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        buttons="accept"
+        title="A propos de TrombiNews"
+  width="500" height="350">
+
+  <tabbox flex="1">
+    <tabs>
+      <tab label="A propos de TrombiNews"/>
+    </tabs>
+    <tabpanels flex="1">
+      <iframe id="aboutframe" src="chrome://trombinews/content/apropos.html"/>
+    </tabpanels>
+  </tabbox>
+</dialog>

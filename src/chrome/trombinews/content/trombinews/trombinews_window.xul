@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<?xml-stylesheet href="chrome://communicator/skin/" type="text/css"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        xmlns:nc="http://home.netscape.com/NC-rdf#"
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        title="TrombiNews"
+	onload="onLoad();"
+        id="boitedialogue"
+>
+
+<script type="application/x-javascript" src="chrome://trombinews/content/trombinews_window.js"/>
+
+<vbox align="center">
+   <hbox align="center">
+       <image id="trombinewsphoto" style="maxHeight:200px;maxWidth:200px;minWidth:50px;minHeight:50px" />
+   </hbox>
+</vbox>
+
+</window>
+
