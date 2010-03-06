@@ -8,9 +8,9 @@
 		<em:version>0.8.1</em:version>
 		<em:description>Affiche la photo de l'expéditeur à côté du message</em:description>
 		<em:creator>Fabien Vinas</em:creator>
-        <em:updateURL>https://trombinews.campus.ecp.fr/update/update.rdf.php</em:updateURL>
+        <em:updateURL>https://www.rez-gif.supelec.fr/intra/trombinews/trombinews.rdf.php</em:updateURL>
         <em:iconURL>chrome://trombinews/content/trombinews.png</em:iconURL>
-        <em:homepageURL>http://trombinews.campus.ecp.fr/</em:homepageURL>
+        <em:homepageURL>http://www.rez-gif.supelec.fr/doc/trombinews/</em:homepageURL>
         <em:aboutURL>chrome://trombinews/content/apropos.xul</em:aboutURL>
 
 		<em:file>
