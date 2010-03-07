@@ -17,17 +17,32 @@ if(ereg(".*<.*>$",$mail)) {
 
 $mail1=$regs[1];
 if($mode=='dns'){
-  dns=mysql_real_escape_string($_GET['dns']);
-  ereg("[a-zA-Z-]+",$dns,$res);
-  $dns=$res[0];
-  $req=mysql_query("SELECT surname AS nom, firstname AS prenom, promotion AS promo, photo1 FROM trombi_entries WHERE LOWER(surname) LIKE '$dns'") or die(mysql_error());
+	$dns = mysql_real_escape_string($_GET['dns']);
+	preg_match("/[a-zA-Z\-]+/",$dns,$res);
+	$dns = $res[0];
+	$req=mysql_query("SELECT surname AS nom, firstname AS prenom, promotion AS promo, photo1 FROM trombi_entries WHERE LOWER(surname) LIKE '$dns'") or die(mysql_error());
+    if(mysql_affected_rows()!=1) die();
+    $data=mysql_fetch_array($req);
 }
 else{
-  $req=mysql_query("SELECT surname AS nom, firstname AS prenom, promotion AS promo, photo1 FROM trombi_entries WHERE emails LIKE '$mail1%'") or die(mysql_error());
+	$req=mysql_query("SELECT surname AS nom, firstname AS prenom, promotion AS promo, photo1 FROM trombi_entries WHERE emails LIKE '$mail1%'") or die(mysql_error());
+    // Ajout Remi Rampin, 07/03/2010
+    if(mysql_affected_rows()!=1
+     && ($regs[2]=='supelec.fr' || $regs[2]=='rez-gif.supelec.fr') ) {
+        $nom=explode('.', $mail1);
+        if(count($nom)!=2) die();
+        $nom[0]=preg_replace('/[^a-z0-9]/', '%', $nom[0]);
+        $nom[1]=preg_replace('/[^a-z0-9]/', '%', $nom[1]);
+        $req=mysql_query("SELECT surname AS nom, firstname AS prenom, promotion AS promo, photo1 FROM trombi_entries WHERE firstname LIKE '$nom[0]%' AND surname LIKE '$nom[1]%'") or die(mysql_error());
+        if(mysql_affected_rows()!=1) die();
+        $data=mysql_fetch_array($req);
+    } else if(mysql_affected_rows()!=1) {
+        die();
+    } else {
+        $data=mysql_fetch_array($req);
+    }
+    // /Remi Rampin
 }
-
-if(mysql_affected_rows()!=1) die();
-$data=mysql_fetch_array($req);
 
 if($mode=="nom") {
 echo $data[1]." ".$data[0];
@@ -38,18 +53,20 @@ echo $data[2];
 else{
 
 if(isset($_GET['width']) && is_numeric($_GET['width'])){
-  $width = $_GET['width'];
-  $height = $width;
+	$width = $_GET['width'];
+	$height = $width;
 }
 elseif($mode=="large") {
-  $width=200;
-  $height=200;
+$width=200;
+$height=200;
 } else {
-  $width = 100;
-  $height = 100;
+$width = 100;
+$height = 100;
 }
 
+if($data['photo1']==null || $data['photo1']=='') die();
 $filename="../../trombi/thumbs/".$data['photo1'];
+if(!file_exists($filename)) die();
 
 header("Content-type: image/jpg");
 
@@ -73,7 +90,7 @@ if ($type==1) {
 }
 imagecopyresampled($image_p, $image, 0, 0, 0, 0, $width, $height, $width_orig, $height_orig);
 
-imagegif($image_p);
+imagejpeg($image_p);
 }
 
 ?>
