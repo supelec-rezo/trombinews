@@ -5,7 +5,7 @@
 		<em:type>2</em:type>
 		<em:name>Trombinews</em:name>
 		<em:displayname>TrombiNews</em:displayname>
-		<em:version>0.8.1</em:version>
+		<em:version>0.8.2</em:version>
 		<em:description>Affiche la photo de l'expéditeur à côté du message</em:description>
 		<em:creator>Fabien Vinas</em:creator>
         <em:updateURL>https://www.rez-gif.supelec.fr/intra/trombinews/trombinews.rdf.php</em:updateURL>

@@ -1,8 +1,10 @@
 ZIP=zip -r -9
 MV=mv
-VERSION=0.8.1
+VERSION=0.8.2
 
 NAME=trombinews-$(VERSION)
+
+.PHONY: all src/chrome/trombinews.jar $(NAME).xpi
 
 all: $(NAME).xpi
 

@@ -20,7 +20,7 @@
 // Modifié par Olivier Gatimel (dit Gagou) pour Supélec Rezo
 
 
-var TROMBINEWSVERSION = "0.8.1";
+var TROMBINEWSVERSION = "0.8.2";
 
 var orgUpdateMessageHeaders = null;
 var theText = null;

@@ -14,7 +14,7 @@
 
 <vbox align="center">
    <hbox align="center">
-       <image id="trombinewsphoto" style="maxHeight:200px;maxWidth:200px;minWidth:50px;minHeight:50px" />
+       <image id="trombinewsphoto" style="maxHeight:200px;maxWidth:200px;minWidth:50px;minHeight:50px" onclick="window.close();" />
    </hbox>
 </vbox>
 
