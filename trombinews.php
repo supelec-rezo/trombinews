@@ -18,12 +18,16 @@ $mode = $_GET['mode'];
 if(preg_match('/<.*>$/', $mail))
     $mail = preg_replace('/^.+<(.+)>/', '$1', $mail);
 
+// Attention injections
+if(!preg_match('/^[a-zA-Z0-9_@.-]/', $mail))
+    die();
+
 // DNS
 if($mode == 'dns')
 {
 	$dns = mysql_real_escape_string($_GET['dns']);
 	$dns = preg_replace('/^[a-zA-Z\-]+/', '$0', $dns);
-	$req = mysql_query("SELECT surname AS nom, firstname AS prenom, promotion AS promo, photo1 FROM trombi_entries WHERE LOWER(surname) LIKE '$dns'") or die(mysql_error());
+	$req = mysql_query("SELECT surname AS nom, firstname AS prenom, promotion AS promo, photo_display, photo1, photo2, photo3 FROM trombi_entries WHERE LOWER(surname) LIKE '$dns'") or die(mysql_error());
     if(mysql_affected_rows() != 1) die();
     $data = mysql_fetch_array($req);
 }
@@ -31,7 +35,7 @@ if($mode == 'dns')
 else
 {
     // On tente d'abord d'identifier l'adresse email
-	$req = mysql_query("SELECT surname AS nom, firstname AS prenom, promotion AS promo, photo1 FROM trombi_entries WHERE emails = '$mail'") or die(mysql_error());
+	$req = mysql_query("SELECT surname AS nom, firstname AS prenom, promotion AS promo, photo_display, photo1, photo2, photo3 FROM trombi_entries WHERE emails = '$mail'") or die(mysql_error());
 
     // Si ça a réussi
     if(mysql_affected_rows() == 1)
@@ -44,7 +48,7 @@ else
         if(count($nom) != 2) die();
         $nom[0] = preg_replace('/[^a-z0-9]/', '%', $nom[0]);
         $nom[1] = preg_replace('/[^a-z0-9]/', '%', $nom[1]);
-        $req = mysql_query("SELECT surname AS nom, firstname AS prenom, promotion AS promo, photo1 FROM trombi_entries WHERE firstname LIKE '$nom[0]%' AND surname LIKE '$nom[1]%'") or die(mysql_error());
+        $req = mysql_query("SELECT surname AS nom, firstname AS prenom, promotion AS promo, photo_display, photo1, photo2, photo3 FROM trombi_entries WHERE firstname LIKE '$nom[0]%' AND surname LIKE '$nom[1]%'") or die(mysql_error());
         if(mysql_affected_rows() != 1) die();
         $data = mysql_fetch_array($req);
     }
@@ -80,8 +84,13 @@ else
         $height = 100;
     }
 
-    if($data['photo1'] == null || $data['photo1'] == '') die();
-    $filename = '../../trombi/thumbs/' . $data['photo1'];
+    if($data['photo_display'] == null)
+        die();
+    $photo = $data['photo'.intval($data['photo_display'])];
+    if($photo == null || $photo == '')
+        die();
+
+    $filename = '../../trombi/thumbs/' . $photo;
     if(!file_exists($filename)) die();
 
     header('Content-type: image/jpg');
