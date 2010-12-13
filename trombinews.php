@@ -25,9 +25,9 @@ if(!preg_match('/^[a-zA-Z0-9_@.-]/', $mail))
 // DNS
 if($mode == 'dns')
 {
-	$dns = mysql_real_escape_string($_GET['dns']);
-	$dns = preg_replace('/^[a-zA-Z\-]+/', '$0', $dns);
-	$req = mysql_query("SELECT surname AS nom, firstname AS prenom, promotion AS promo, photo_display, photo1, photo2, photo3 FROM trombi_entries WHERE LOWER(surname) LIKE '$dns'") or die(mysql_error());
+    $dns = mysql_real_escape_string($_GET['dns']);
+    $dns = preg_replace('/^[a-zA-Z\-]+/', '$0', $dns);
+    $req = mysql_query("SELECT surname AS nom, firstname AS prenom, promotion AS promo, photo_display, photo1, photo2, photo3 FROM trombi_entries WHERE LOWER(surname) LIKE '$dns'") or die(mysql_error());
     if(mysql_affected_rows() != 1) die();
     $data = mysql_fetch_array($req);
 }
@@ -35,7 +35,7 @@ if($mode == 'dns')
 else
 {
     // On tente d'abord d'identifier l'adresse email
-	$req = mysql_query("SELECT surname AS nom, firstname AS prenom, promotion AS promo, photo_display, photo1, photo2, photo3 FROM trombi_entries WHERE emails = '$mail'") or die(mysql_error());
+    $req = mysql_query("SELECT surname AS nom, firstname AS prenom, promotion AS promo, photo_display, photo1, photo2, photo3 FROM trombi_entries WHERE emails = '$mail'") or die(mysql_error());
 
     // Si ça a réussi
     if(mysql_affected_rows() == 1)
@@ -70,14 +70,14 @@ else
 {
     if(isset($_GET['width']) && is_numeric($_GET['width']))
     {
-    	$width = $_GET['width'];
-    	$height = $width;
+        $width = $_GET['width'];
+        $height = $width;
     }
     elseif($mode == 'large')
     {
         $width = 200;
         $height = 200;
-    } 
+    }
     else
     {
         $width = 100;
