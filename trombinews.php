@@ -90,7 +90,7 @@ else
     if($photo == null || $photo == '')
         die();
 
-    $filename = '../../trombi/thumbs/' . $photo;
+    $filename = '../content/trombi_thumbs/' . $photo;
     if(!file_exists($filename)) die();
 
     header('Content-type: image/jpg');
